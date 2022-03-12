@@ -5,46 +5,74 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ALPHA_DGS.Controllers
 {
-   
-        public class RolesController : Controller
+
+    public class RolesController : Controller
+    {
+        private readonly AlphaDbContext _db;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+
+        public RolesController(AlphaDbContext db, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            private readonly AlphaDbContext _db;
-            private readonly UserManager<IdentityUser> _userManager;
-            private readonly RoleManager<IdentityRole> _roleManager;
+            _db = db;
+            _roleManager = roleManager;
+            _userManager = userManager;
+        }
 
 
-            public RolesController(AlphaDbContext db, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public IActionResult Index()
+        {
+            var roles = _db.Roles.ToList();
+            return View(roles);
+        }
+
+        [HttpGet]
+        public IActionResult Upsert(string id)
+        {
+            if (String.IsNullOrEmpty(id))
             {
-                _db = db;
-                _roleManager = roleManager;
-                _userManager = userManager;
+                return View();
             }
-
-
-            public IActionResult Index()
+            else
             {
-                var roles = _db.Roles.ToList();
-                return View(roles);
+                //update
+                var objFromDb = _db.Roles.FirstOrDefault(u => u.Id == id);
+                return View(objFromDb);
             }
+        }
 
-            [HttpGet]
-            public IActionResult Upsert(string id)
+
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public async Task<IActionResult> Upsert(IdentityRole roleObj)
             {
-                if (String.IsNullOrEmpty(id))
+                if (await _roleManager.RoleExistsAsync(roleObj.Name))
                 {
-                    return View();
+
+                }
+                if (string.IsNullOrEmpty(roleObj.Id))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole() { Name = roleObj.Name });
                 }
                 else
                 {
-                    //update
-                    var objFromDb = _db.Roles.FirstOrDefault(u => u.Id == id);
-                    return View(objFromDb);
+
+                    var objRoleFromDb = _db.Roles.FirstOrDefault(u => u.Id == roleObj.Id);
+                    objRoleFromDb.Name = roleObj.Name;
+                    objRoleFromDb.NormalizedName = roleObj.Name.ToUpper();
+                    var result = await _roleManager.UpdateAsync(objRoleFromDb);
+
+
                 }
+                return RedirectToAction(nameof(Index));
 
 
             }
         }
-}
+    }
+
