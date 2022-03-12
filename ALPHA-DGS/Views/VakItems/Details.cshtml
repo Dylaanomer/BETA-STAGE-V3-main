@@ -1,0 +1,60 @@
+﻿@model ALPHA_DGS.Models.VakItem
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>VakItem</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Naam)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Naam)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Land)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Land)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Invoer.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rij)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rij.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RijSet)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RijSet.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Afdeling)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Afdeling.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
