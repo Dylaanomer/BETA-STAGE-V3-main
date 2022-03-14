@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ALPHA_DGS.Data;
 using ALPHA_DGS.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ALPHA_DGS.Controllers
 {
@@ -49,6 +50,7 @@ namespace ALPHA_DGS.Controllers
         }
 
         // GET: VakItems/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["AfdelingId"] = new SelectList(_context.Afdeling, "Id", "Id");
