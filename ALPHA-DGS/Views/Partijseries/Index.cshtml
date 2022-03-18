@@ -6,48 +6,78 @@
 
 <h1>Index</h1>
 
+<style>
+    table {
+        position: relative;
+        border: 1px solid #ddd;
+        border-collapse: collapse;
+    }
+
+    td, th {
+        white-space: nowrap;
+        border: 1px solid #ddd;
+        padding: 20px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #eee;
+        position: sticky;
+        top: -1px;
+        z-index: 2;
+    }
+
+    .container {
+        width: 800px;
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+
+    .column {
+        display: inline-block;
+        max-width: 200px;
+    }
+
+    .block {
+        border: 1px solid #ddd;
+        max-width: 200px;
+        padding: 10px;
+    }
+
+    &:first-of-type {
+        left: 0;
+        z-index: 3;
+    }
+
+    tbody tr td:first-of-type {
+        background-color: #eee;
+        position: sticky;
+        left: -1px;
+        text-align: left;
+    }
+</style>
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PsJaarletter)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PsVan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PsTot)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PsHerk)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PsJaarletter)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PsVan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PsTot)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PsHerk)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PserId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PserId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PserId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<p>
+    <a asp-action="CreateMore">Meer Invoer</a>
+</p>
+
+@{ int i = 1; }
+<div>
+    <div>
+        @foreach (var item in Model)
+        {
+            if (i > 0 && i % 10 == 1)
+            {
+                // close the div and start again
+            @:</div><div class="column">
+            }
+            <div class="block">@item.PsVan</div>
+            <div class="block">@item.PsTot</div>
+            i++;
+        }
+    </div>
+</div>
