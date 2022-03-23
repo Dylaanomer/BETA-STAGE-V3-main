@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ALPHA_DGS.Migrations
 {
-    public partial class AddTest : Migration
+    public partial class XDDELTACRON : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -78,7 +78,7 @@ namespace ALPHA_DGS.Migrations
                 name: "Magazijn",
                 columns: table => new
                 {
-                    MloId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ParentMloId = table.Column<int>(type: "int", nullable: false),
                     LokatieType = table.Column<int>(type: "int", nullable: false),
@@ -89,28 +89,7 @@ namespace ALPHA_DGS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Magazijn", x => x.MloId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MagazijnPartij",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Pvan = table.Column<int>(type: "int", nullable: false),
-                    Ptot = table.Column<int>(type: "int", nullable: false),
-                    PHerk = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Pstadid = table.Column<int>(type: "int", nullable: false),
-                    VpNaam = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    MlokId = table.Column<int>(type: "int", nullable: false),
-                    Uitserie = table.Column<bool>(type: "bit", nullable: false),
-                    AantFust = table.Column<int>(type: "int", nullable: false),
-                    Naam = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MagazijnPartij", x => x.Id);
+                    table.PrimaryKey("PK_Magazijn", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -133,14 +112,14 @@ namespace ALPHA_DGS.Migrations
                 name: "Stadium",
                 columns: table => new
                 {
-                    PstadId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StadIum = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
                     Omschrijving = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stadium", x => x.PstadId);
+                    table.PrimaryKey("PK_Stadium", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,6 +228,39 @@ namespace ALPHA_DGS.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "MagazijnPartij",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Pvan = table.Column<int>(type: "int", nullable: false),
+                    Ptot = table.Column<int>(type: "int", nullable: false),
+                    PHerk = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    MagazijnId = table.Column<int>(type: "int", nullable: false),
+                    VpNaam = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    StadiumId = table.Column<int>(type: "int", nullable: false),
+                    Uitserie = table.Column<bool>(type: "bit", nullable: false),
+                    AantFust = table.Column<int>(type: "int", nullable: false),
+                    Naam = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MagazijnPartij", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MagazijnPartij_Magazijn_MagazijnId",
+                        column: x => x.MagazijnId,
+                        principalTable: "Magazijn",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MagazijnPartij_Stadium_StadiumId",
+                        column: x => x.StadiumId,
+                        principalTable: "Stadium",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -287,6 +299,16 @@ namespace ALPHA_DGS.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MagazijnPartij_MagazijnId",
+                table: "MagazijnPartij",
+                column: "MagazijnId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MagazijnPartij_StadiumId",
+                table: "MagazijnPartij",
+                column: "StadiumId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -313,22 +335,22 @@ namespace ALPHA_DGS.Migrations
                 name: "IDinvoer");
 
             migrationBuilder.DropTable(
-                name: "Magazijn");
-
-            migrationBuilder.DropTable(
                 name: "MagazijnPartij");
 
             migrationBuilder.DropTable(
                 name: "Partijserie");
 
             migrationBuilder.DropTable(
-                name: "Stadium");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Magazijn");
+
+            migrationBuilder.DropTable(
+                name: "Stadium");
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ALPHA_DGS.Models
     public class Magazijn
     {
         [Key]
-        public int MloId { get; set; }
+        public int Id { get; set; }
 
         [ForeignKey("Instructor")]
         public int ParentMloId { get; set; }

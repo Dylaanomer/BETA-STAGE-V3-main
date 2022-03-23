@@ -9,7 +9,7 @@ namespace ALPHA_DGS.Models
     public class Stadium
     {
         [Key]
-        public int PstadId { get; set; }
+        public int Id { get; set; }
 
         [StringLength(5)]
         public string StadIum { get; set; }

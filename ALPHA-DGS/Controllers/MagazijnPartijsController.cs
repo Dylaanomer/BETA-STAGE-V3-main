@@ -22,7 +22,8 @@ namespace ALPHA_DGS.Controllers
         // GET: MagazijnPartijs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.MagazijnPartij.ToListAsync());
+            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
+            return View(await alphaDbContext.ToListAsync());
         }
 
         // GET: MagazijnPartijs/Details/5
@@ -34,6 +35,8 @@ namespace ALPHA_DGS.Controllers
             }
 
             var magazijnPartij = await _context.MagazijnPartij
+                .Include(m => m.Magazijn)
+                .Include(m => m.Stadium)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (magazijnPartij == null)
             {
@@ -46,6 +49,8 @@ namespace ALPHA_DGS.Controllers
         // GET: MagazijnPartijs/Create
         public IActionResult Create()
         {
+            ViewData["MagazijnId"] = new SelectList(_context.Magazijn, "Id", "Id");
+            ViewData["StadiumId"] = new SelectList(_context.Stadium, "Id", "Id");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace ALPHA_DGS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Pvan,Ptot,PHerk,Pstadid,VpNaam,MlokId,Uitserie,AantFust,Naam")] MagazijnPartij magazijnPartij)
+        public async Task<IActionResult> Create([Bind("Id,Pvan,Ptot,PHerk,MagazijnId,VpNaam,StadiumId,Uitserie,AantFust,Naam")] MagazijnPartij magazijnPartij)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace ALPHA_DGS.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MagazijnId"] = new SelectList(_context.Magazijn, "Id", "Id", magazijnPartij.MagazijnId);
+            ViewData["StadiumId"] = new SelectList(_context.Stadium, "Id", "Id", magazijnPartij.StadiumId);
             return View(magazijnPartij);
         }
 
@@ -78,6 +85,8 @@ namespace ALPHA_DGS.Controllers
             {
                 return NotFound();
             }
+            ViewData["MagazijnId"] = new SelectList(_context.Magazijn, "Id", "Id", magazijnPartij.MagazijnId);
+            ViewData["StadiumId"] = new SelectList(_context.Stadium, "Id", "Id", magazijnPartij.StadiumId);
             return View(magazijnPartij);
         }
 
@@ -86,7 +95,7 @@ namespace ALPHA_DGS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Pvan,Ptot,PHerk,Pstadid,VpNaam,MlokId,Uitserie,AantFust,Naam")] MagazijnPartij magazijnPartij)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Pvan,Ptot,PHerk,MagazijnId,VpNaam,StadiumId,Uitserie,AantFust,Naam")] MagazijnPartij magazijnPartij)
         {
             if (id != magazijnPartij.Id)
             {
@@ -113,6 +122,8 @@ namespace ALPHA_DGS.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MagazijnId"] = new SelectList(_context.Magazijn, "Id", "Id", magazijnPartij.MagazijnId);
+            ViewData["StadiumId"] = new SelectList(_context.Stadium, "Id", "Id", magazijnPartij.StadiumId);
             return View(magazijnPartij);
         }
 
@@ -125,6 +136,8 @@ namespace ALPHA_DGS.Controllers
             }
 
             var magazijnPartij = await _context.MagazijnPartij
+                .Include(m => m.Magazijn)
+                .Include(m => m.Stadium)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (magazijnPartij == null)
             {

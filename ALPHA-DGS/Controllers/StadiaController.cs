@@ -34,7 +34,7 @@ namespace ALPHA_DGS.Controllers
             }
 
             var stadium = await _context.Stadium
-                .FirstOrDefaultAsync(m => m.PstadId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (stadium == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace ALPHA_DGS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PstadId,StadIum,Omschrijving")] Stadium stadium)
+        public async Task<IActionResult> Create([Bind("Id,StadIum,Omschrijving")] Stadium stadium)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace ALPHA_DGS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PstadId,StadIum,Omschrijving")] Stadium stadium)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,StadIum,Omschrijving")] Stadium stadium)
         {
-            if (id != stadium.PstadId)
+            if (id != stadium.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace ALPHA_DGS.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StadiumExists(stadium.PstadId))
+                    if (!StadiumExists(stadium.Id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace ALPHA_DGS.Controllers
             }
 
             var stadium = await _context.Stadium
-                .FirstOrDefaultAsync(m => m.PstadId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (stadium == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace ALPHA_DGS.Controllers
 
         private bool StadiumExists(int id)
         {
-            return _context.Stadium.Any(e => e.PstadId == id);
+            return _context.Stadium.Any(e => e.Id == id);
         }
     }
 }

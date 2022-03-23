@@ -34,7 +34,7 @@ namespace ALPHA_DGS.Controllers
             }
 
             var magazijn = await _context.Magazijn
-                .FirstOrDefaultAsync(m => m.MloId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (magazijn == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace ALPHA_DGS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MloId,ParentMloId,LokatieType,Naam,Sequence,Bezet,MaxAanFust")] Magazijn magazijn)
+        public async Task<IActionResult> Create([Bind("Id,ParentMloId,LokatieType,Naam,Sequence,Bezet,MaxAanFust")] Magazijn magazijn)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace ALPHA_DGS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MloId,ParentMloId,LokatieType,Naam,Sequence,Bezet,MaxAanFust")] Magazijn magazijn)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ParentMloId,LokatieType,Naam,Sequence,Bezet,MaxAanFust")] Magazijn magazijn)
         {
-            if (id != magazijn.MloId)
+            if (id != magazijn.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace ALPHA_DGS.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MagazijnExists(magazijn.MloId))
+                    if (!MagazijnExists(magazijn.Id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace ALPHA_DGS.Controllers
             }
 
             var magazijn = await _context.Magazijn
-                .FirstOrDefaultAsync(m => m.MloId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (magazijn == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace ALPHA_DGS.Controllers
 
         private bool MagazijnExists(int id)
         {
-            return _context.Magazijn.Any(e => e.MloId == id);
+            return _context.Magazijn.Any(e => e.Id == id);
         }
     }
 }

@@ -19,14 +19,16 @@ namespace ALPHA_DGS.Models
         [StringLength(50)]
         public string PHerk { get; set; }
 
-        [ForeignKey("Stadium")]
-        public int Pstadid { get; set; }
+        public Magazijn Magazijn { get; set; }
+
+        public int MagazijnId { get; set; }
 
         [StringLength(50)]
         public string VpNaam { get; set; }
 
-        [ForeignKey("Magazijn")]
-        public int MlokId { get; set; }
+        public Stadium Stadium { get; set; }
+
+        public int StadiumId { get; set; }
 
         public bool Uitserie { get; set; }
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ALPHA_DGS.Migrations
 {
     [DbContext(typeof(AlphaDbContext))]
-    [Migration("20220318141337_AddTest")]
-    partial class AddTest
+    [Migration("20220323213907_XDDELTACRON")]
+    partial class XDDELTACRON
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,7 +55,7 @@ namespace ALPHA_DGS.Migrations
 
             modelBuilder.Entity("ALPHA_DGS.Models.Magazijn", b =>
                 {
-                    b.Property<int>("MloId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -79,7 +79,7 @@ namespace ALPHA_DGS.Migrations
                     b.Property<int>("Sequence")
                         .HasColumnType("int");
 
-                    b.HasKey("MloId");
+                    b.HasKey("Id");
 
                     b.ToTable("Magazijn");
                 });
@@ -94,7 +94,7 @@ namespace ALPHA_DGS.Migrations
                     b.Property<int>("AantFust")
                         .HasColumnType("int");
 
-                    b.Property<int>("MlokId")
+                    b.Property<int>("MagazijnId")
                         .HasColumnType("int");
 
                     b.Property<string>("Naam")
@@ -105,13 +105,13 @@ namespace ALPHA_DGS.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Pstadid")
-                        .HasColumnType("int");
-
                     b.Property<int>("Ptot")
                         .HasColumnType("int");
 
                     b.Property<int>("Pvan")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StadiumId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Uitserie")
@@ -122,6 +122,10 @@ namespace ALPHA_DGS.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MagazijnId");
+
+                    b.HasIndex("StadiumId");
 
                     b.ToTable("MagazijnPartij");
                 });
@@ -154,7 +158,7 @@ namespace ALPHA_DGS.Migrations
 
             modelBuilder.Entity("ALPHA_DGS.Models.Stadium", b =>
                 {
-                    b.Property<int>("PstadId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -167,7 +171,7 @@ namespace ALPHA_DGS.Migrations
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
-                    b.HasKey("PstadId");
+                    b.HasKey("Id");
 
                     b.ToTable("Stadium");
                 });
@@ -383,6 +387,25 @@ namespace ALPHA_DGS.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("ALPHA_DGS.Models.MagazijnPartij", b =>
+                {
+                    b.HasOne("ALPHA_DGS.Models.Magazijn", "Magazijn")
+                        .WithMany()
+                        .HasForeignKey("MagazijnId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ALPHA_DGS.Models.Stadium", "Stadium")
+                        .WithMany()
+                        .HasForeignKey("StadiumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Magazijn");
+
+                    b.Navigation("Stadium");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

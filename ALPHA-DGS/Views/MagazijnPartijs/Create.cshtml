@@ -28,9 +28,8 @@
                 <span asp-validation-for="PHerk" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Pstadid" class="control-label"></label>
-                <input asp-for="Pstadid" class="form-control" />
-                <span asp-validation-for="Pstadid" class="text-danger"></span>
+                <label asp-for="MagazijnId" class="control-label"></label>
+                <select asp-for="MagazijnId" class ="form-control" asp-items="ViewBag.MagazijnId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="VpNaam" class="control-label"></label>
@@ -38,9 +37,8 @@
                 <span asp-validation-for="VpNaam" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MlokId" class="control-label"></label>
-                <input asp-for="MlokId" class="form-control" />
-                <span asp-validation-for="MlokId" class="text-danger"></span>
+                <label asp-for="StadiumId" class="control-label"></label>
+                <select asp-for="StadiumId" class ="form-control" asp-items="ViewBag.StadiumId"></select>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
