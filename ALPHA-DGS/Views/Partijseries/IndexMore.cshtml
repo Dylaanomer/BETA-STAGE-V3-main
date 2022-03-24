@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ALPHA_DGS.Models.Partijserie>
+
+@{
+    ViewData["Title"] = "IndexMore";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Index">Normal View</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PsJaarletter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PsVan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PsTot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PsHerk)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PsJaarletter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PsVan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PsTot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PsHerk)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PserId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PserId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PserId">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
