@@ -1,0 +1,38 @@
+﻿@using ALPHA_DGS ; // ALPHA-DGS 
+@model dynamic  
+@{  
+    ViewBag.Title = "Home Page";  
+}  
+<h2>@ViewBag.Message</h2>  
+
+<h2>Teacher List</h2>  
+
+<table>  
+    <tr>  
+        <th>Id</th>    
+        <th>Name</th>  
+    </tr>  
+    @foreach (Magazijn datas in Model.Magazijn)  
+    {  
+        <tr>  
+            <td>@datas.LokatieType</td>  
+            <td>@datas.Naam</td>  
+        </tr>  
+    }  
+</table>  
+
+<h2>Student List</h2>  
+
+<table>  
+    <tr>  
+        <th>Id</th>  
+        <th>Name</th>  
+    </tr>  
+    @foreach (Partijserie series in Model.PartijSerie)  
+    {  
+        <tr>  
+            <td>@series.PserId</td>   
+            <td>@series.PsHerk</td>  
+        </tr>  
+    }  
+</table>

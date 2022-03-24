@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ALPHA_DGS.Models.Partijserie>
+﻿@using MultipleModelInOneView;
+@model dynamic
 
 @{
     ViewData["Title"] = "IndexOverzicht";
@@ -58,7 +59,7 @@
 </p>
 
 <p>
-    <a asp-action="IndexMore">Overzichtelijke view</a>
+    <a asp-action="IndexOverzicht">Schematische View</a>
 </p>
 
 @{ int i = 1; }

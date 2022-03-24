@@ -26,6 +26,12 @@ namespace ALPHA_DGS.Controllers
             return View(await alphaDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> IndexOverzicht()
+        {
+            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
+            return View(await alphaDbContext.ToListAsync());
+        }
+
         // GET: MagazijnPartijs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
