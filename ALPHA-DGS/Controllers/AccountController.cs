@@ -169,7 +169,7 @@ namespace ALPHA_DGS.Controllers
         public async Task<IActionResult> LogOff(RegisterViewModel model)
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction(nameof(VakItemsController.Index), "VakItems");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         private void AddErrors(IdentityResult result)
