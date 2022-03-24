@@ -26,7 +26,7 @@ namespace ALPHA_DGS.Controllers
             return View(await alphaDbContext.ToListAsync());
         }
 
-        public async Task<IActionResult> IndexOverzicht()
+        public async Task<IActionResult> IndexOVER()
         {
             var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
             return View(await alphaDbContext.ToListAsync());

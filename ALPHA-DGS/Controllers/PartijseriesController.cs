@@ -30,6 +30,56 @@ namespace ALPHA_DGS.Controllers
             return View(await _context.Partijserie.ToListAsync());
         }
 
+        public async Task<IActionResult> IndexMore2()
+        {
+            return View(await _context.Partijserie.ToListAsync());
+        }
+
+        public async Task<IActionResult> IndexMore3()
+        {
+            return View(await _context.Partijserie.ToListAsync());
+        }
+
+        public async Task<IActionResult> IndexMore4()
+        {
+            return View(await _context.Partijserie.ToListAsync());
+        }
+
+        public async Task<IActionResult> IndexMore5()
+        {
+            return View(await _context.Partijserie.ToListAsync());
+        }
+
+        public async Task<IActionResult> IndexMore6()
+        {
+            return View(await _context.Partijserie.ToListAsync());
+        }
+
+        public async Task<IActionResult> IndexMore7()
+        {
+            return View(await _context.Partijserie.ToListAsync());
+        }
+
+        public async Task<IActionResult> IndexMore8()
+        {
+            return View(await _context.Partijserie.ToListAsync());
+        }
+
+        public async Task<IActionResult> IndexMore9()
+        {
+            return View(await _context.Partijserie.ToListAsync());
+        }
+
+        public async Task<IActionResult> IndexMore10()
+        {
+            return View(await _context.Partijserie.ToListAsync());
+        }
+
+        public async Task<IActionResult> IndexMore11()
+        {
+            return View(await _context.Partijserie.ToListAsync());
+        }
+
         // GET: Partijseries/Details/5
         public async Task<IActionResult> Details(int? id)
         {

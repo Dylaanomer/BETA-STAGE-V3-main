@@ -21,8 +21,6 @@ namespace ALPHA_DGS.Models
 
         public Magazijn Magazijn { get; set; }
 
-        public int LokatieType { get; set; }
-
         public int MagazijnId { get; set; }
 
 
