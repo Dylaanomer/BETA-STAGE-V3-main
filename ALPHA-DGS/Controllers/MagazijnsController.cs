@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ALPHA_DGS.Data;
 using ALPHA_DGS.Models;
+using System.Dynamic;
 
 namespace ALPHA_DGS.Controllers
 {
@@ -24,6 +25,34 @@ namespace ALPHA_DGS.Controllers
         {
             return View(await _context.Magazijn.ToListAsync());
         }
+
+        public List<Magazijn> GetData()
+        {
+            List<Magazijn> datas = new List<Magazijn>();
+            datas.Add(new Magazijn { LokatieType = 1, Naam = "Magazijn1" });
+            datas.Add(new Magazijn { LokatieType = 2, Naam = "Magazijn2" });
+            datas.Add(new Magazijn { LokatieType = 3, Naam=  "Magazijn3" });
+            return datas;
+        }
+
+        public List<Partijserie> GetStudents()
+        {
+            List<Partijserie> series = new List<Partijserie>();
+            series.Add(new Partijserie { PserId = 1, PsHerk = "GER" });
+            series.Add(new Partijserie { PserId = 2, PsHerk = "FRA" });
+            series.Add(new Partijserie { PserId = 3, PsHerk = "ITA" });
+            return series;
+        }
+
+        public ActionResult IndexMeer()
+        {
+            ViewBag.Message = "Hello World";
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Teachers = GetData();
+            mymodel.Teachers = GetStudents();
+            return View(mymodel);
+        }
+
 
         // GET: Magazijns/Details/5
         public async Task<IActionResult> Details(int? id)

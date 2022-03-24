@@ -58,7 +58,7 @@
 </p>
 
 <p>
-    <a asp-action="CreateMore">Meer Invoer</a>
+    <a asp-action="IndexMore">Overzichtelijke view</a>
 </p>
 
 @{ int i = 1; }
@@ -72,7 +72,9 @@
             @:</div><div class="column">
             }
             <div class="block">@item.PsVan</div>
+            <a asp-action="Delete" asp-route-id="@item.PserId">Delete</a>
             <div class="block">@item.PsTot</div>
+            <a asp-action="Delete" asp-route-id="@item.PserId">Delete</a>
             i++;
         }
     </div>
