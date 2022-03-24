@@ -14,13 +14,6 @@ namespace ALPHA_DGS.Controllers
             return View();
         }
 
-        public IActionResult IndexviewMORE()
-        {
-            ViewBag.Message = "Hello world";
-            dynamic mymodel = new ExpandoObject();
-            mymodel.
-        }
-
         public IActionResult AccesDenied()
         {
             return View();

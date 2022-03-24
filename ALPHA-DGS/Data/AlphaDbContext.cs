@@ -7,9 +7,7 @@ namespace ALPHA_DGS.Data
     public class AlphaDbContext : IdentityDbContext
     {
 
-       
-        public DbSet<Afdeling> Afdeling { get; set; }
-
+        
         public DbSet<IdentificatieInvoer> IDinvoer { get; set; }
 
         public DbSet<Magazijn> Magazijn { get; set; }
