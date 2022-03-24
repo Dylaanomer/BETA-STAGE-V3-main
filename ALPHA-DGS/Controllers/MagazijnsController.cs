@@ -25,6 +25,16 @@ namespace ALPHA_DGS.Controllers
             return View(await _context.Magazijn.ToListAsync());
         }
 
+        public List<Magazijn> GetData()
+        {
+            List<Magazijn> datas = new List<Magazijn>();
+            datas.Add(new Magazijn { LokatieType = 1, Naam = "Magazijn1" });
+            datas.Add(new Magazijn { LokatieType = 2, Naam = "Magazijn2" });
+            datas.Add(new Magazijn { LokatieType = 3, Naam=  "Magazijn3" });
+            return datas;
+        }
+
+
         // GET: Magazijns/Details/5
         public async Task<IActionResult> Details(int? id)
         {
