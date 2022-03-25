@@ -27,6 +27,7 @@ namespace ALPHA_DGS
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AlphaDbContext>();
 
             services.AddDbContext<AlphaDbContext>(
@@ -69,6 +70,7 @@ namespace ALPHA_DGS
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

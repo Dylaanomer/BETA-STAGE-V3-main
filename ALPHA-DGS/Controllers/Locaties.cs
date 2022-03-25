@@ -7,91 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ALPHA_DGS.Data;
 using ALPHA_DGS.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ALPHA_DGS.Controllers
 {
-    public class MagazijnPartijsController : Controller
+    
+    public class Locaties : Controller
     {
         private readonly AlphaDbContext _context;
 
-        public MagazijnPartijsController(AlphaDbContext context)
-        {
-            _context = context;
-        }
-
-        // GET: MagazijnPartijs
+        
         public async Task<IActionResult> Index()
         {
             var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
             return View(await alphaDbContext.ToListAsync());
         }
-
-        public async Task<IActionResult> IndexOVER()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER2()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER3()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER4()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER5()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER6()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER7()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER8()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER9()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER10()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER11()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
         // GET: MagazijnPartijs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -228,5 +158,86 @@ namespace ALPHA_DGS.Controllers
         {
             return _context.MagazijnPartij.Any(e => e.Id == id);
         }
+
+        [AllowAnonymous]
+        //Accessible by everyone, even if users are not logged in.
+        public IActionResult Locatie1()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        //Accessible by logged in users.
+        public IActionResult Locatie2()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        //Accessible by logged in users.
+        public IActionResult Locatie3()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        //Accessible by logged in users.
+        public IActionResult Locatie4()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        //Accessible by logged in users.
+        public IActionResult Locatie5()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        //Accessible by logged in users.
+        public IActionResult Locatie6()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        //Accessible by logged in users.
+        public IActionResult Locatie7()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        //Accessible by logged in users.
+        public IActionResult Locatie8()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        //Accessible by logged in users.
+        public IActionResult Locatie9()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        //Accessible by logged in users.
+        public IActionResult Locatie10()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        //Accessible by logged in users.
+        public IActionResult Locatie11()
+        {
+            return View();
+        }
     }
 }
+
+
+
+  
