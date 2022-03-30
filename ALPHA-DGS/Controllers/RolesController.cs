@@ -24,7 +24,7 @@ namespace ALPHA_DGS.Controllers
             _userManager = userManager;
         }
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             var roles = _db.Roles.ToList();

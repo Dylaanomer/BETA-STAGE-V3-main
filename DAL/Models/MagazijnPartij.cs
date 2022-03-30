@@ -12,6 +12,11 @@ namespace ALPHA_DGS.Models
         [Key]
         public int Id { get; set; }
 
+        public int PserId { get; set; }
+        [ForeignKey("PserId")]
+
+        public Partijserie Partijserie { get; set; }
+
         public int Pvan { get; set; }
 
         public int Ptot { get; set; }
