@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ALPHA_DGS.Models.Magazijn">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAAAAAAEAAAgBQAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Magazijn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ALPHA_DGS.Models.MagazijnPartij">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABDCRAAAAAAQAAAAACCABAAAAAAgBAIAQAAAAAAAAAA=</HashCode>
+      <FileName>Models\MagazijnPartij.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Magazijn" />
+      <Property Name="Stadium" />
+      <Property Name="Partijserie" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ALPHA_DGS.Models.Partijserie">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAIA=</HashCode>
+      <FileName>Models\Partijserie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ALPHA_DGS.Models.Stadium">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAACAAA=</HashCode>
+      <FileName>Models\Stadium.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
