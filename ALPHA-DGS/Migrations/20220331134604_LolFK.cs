@@ -3,23 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ALPHA_DGS.Migrations
 {
-    public partial class XDDELTACRON : Migration
+    public partial class LolFK : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Afdeling",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Naam = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Afdeling", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -237,12 +224,12 @@ namespace ALPHA_DGS.Migrations
                     Pvan = table.Column<int>(type: "int", nullable: false),
                     Ptot = table.Column<int>(type: "int", nullable: false),
                     PHerk = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    MagazijnId = table.Column<int>(type: "int", nullable: false),
                     VpNaam = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     StadiumId = table.Column<int>(type: "int", nullable: false),
                     Uitserie = table.Column<bool>(type: "bit", nullable: false),
                     AantFust = table.Column<int>(type: "int", nullable: false),
-                    Naam = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
+                    Naam = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    MagazijnId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -313,9 +300,6 @@ namespace ALPHA_DGS.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Afdeling");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

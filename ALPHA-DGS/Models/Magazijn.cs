@@ -26,5 +26,8 @@ namespace ALPHA_DGS.Models
 
         public int MaxAanFust { get; set; }
 
+        [InverseProperty("Magazijn")]
+        public List<MagazijnPartij> PartijSeriesMagazijn { get; set; }
+
     }
 }

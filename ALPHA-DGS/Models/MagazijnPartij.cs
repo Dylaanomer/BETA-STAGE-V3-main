@@ -19,11 +19,6 @@ namespace ALPHA_DGS.Models
         [StringLength(50)]
         public string PHerk { get; set; }
 
-        public Magazijn Magazijn { get; set; }
-
-        public int MagazijnId { get; set; }
-
-
         [StringLength(50)]
         public string VpNaam { get; set; }
 
@@ -37,5 +32,13 @@ namespace ALPHA_DGS.Models
 
         [StringLength(20)]
         public string Naam { get; set; }
+
+        [Required]
+        public int MagazijnId { get; set; }
+
+        [ForeignKey("MagazijnId")]
+        public Magazijn Magazijn { get; set; }
+
+        
     }
 }

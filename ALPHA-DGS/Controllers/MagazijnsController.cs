@@ -33,7 +33,7 @@ namespace ALPHA_DGS.Controllers
                 return NotFound();
             }
 
-            var magazijn = await _context.Magazijn
+            var magazijn = await _context.Magazijn.Include(r => r.PartijSeriesMagazijn)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (magazijn == null)
             {

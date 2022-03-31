@@ -26,72 +26,6 @@ namespace ALPHA_DGS.Controllers
             return View(await alphaDbContext.ToListAsync());
         }
 
-        public async Task<IActionResult> IndexOVER()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER2()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER3()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER4()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER5()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER6()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER7()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER8()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER9()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER10()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> IndexOVER11()
-        {
-            var alphaDbContext = _context.MagazijnPartij.Include(m => m.Magazijn).Include(m => m.Stadium);
-            return View(await alphaDbContext.ToListAsync());
-        }
-
         // GET: MagazijnPartijs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -112,6 +46,43 @@ namespace ALPHA_DGS.Controllers
             return View(magazijnPartij);
         }
 
+        // GET: MagazijnPartijs/Insert
+        public async Task<IActionResult> Insert(int? id)
+        {
+            Magazijn magazijn = await _context.Magazijn.Where(r => r.Id == id).FirstAsync();
+            if (id is not null && magazijn.Id == id)
+            {
+                MagazijnPartij magazijnpartij = new MagazijnPartij();
+                magazijnpartij.MagazijnId = (int)id;
+
+                return View(magazijnpartij);
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Insert(
+            [Bind("Pvan, Ptot, PHerk, VpNaam, StadiumId, Uitserie, AantFust, Naam, MagazijnId")] MagazijnPartij magazijnPartij)
+            
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(magazijnPartij);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Details), "Magazijn", new { id = magazijnPartij.MagazijnId });
+            }
+
+            return View(magazijnPartij);
+
+        }
+
+
+
+
+
+
         // GET: MagazijnPartijs/Create
         public IActionResult Create()
         {
@@ -125,7 +96,7 @@ namespace ALPHA_DGS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Pvan,Ptot,PHerk,MagazijnId,VpNaam,StadiumId,Uitserie,AantFust,Naam")] MagazijnPartij magazijnPartij)
+        public async Task<IActionResult> Create([Bind("Id,Pvan,Ptot,PHerk,VpNaam,StadiumId,Uitserie,AantFust,Naam,MagazijnId")] MagazijnPartij magazijnPartij)
         {
             if (ModelState.IsValid)
             {
@@ -161,7 +132,7 @@ namespace ALPHA_DGS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Pvan,Ptot,PHerk,MagazijnId,VpNaam,StadiumId,Uitserie,AantFust,Naam")] MagazijnPartij magazijnPartij)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Pvan,Ptot,PHerk,VpNaam,StadiumId,Uitserie,AantFust,Naam,MagazijnId")] MagazijnPartij magazijnPartij)
         {
             if (id != magazijnPartij.Id)
             {

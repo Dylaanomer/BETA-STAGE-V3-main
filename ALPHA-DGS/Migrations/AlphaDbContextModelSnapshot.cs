@@ -374,7 +374,7 @@ namespace ALPHA_DGS.Migrations
             modelBuilder.Entity("ALPHA_DGS.Models.MagazijnPartij", b =>
                 {
                     b.HasOne("ALPHA_DGS.Models.Magazijn", "Magazijn")
-                        .WithMany()
+                        .WithMany("PartijSeriesMagazijn")
                         .HasForeignKey("MagazijnId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -439,6 +439,11 @@ namespace ALPHA_DGS.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ALPHA_DGS.Models.Magazijn", b =>
+                {
+                    b.Navigation("PartijSeriesMagazijn");
                 });
 #pragma warning restore 612, 618
         }

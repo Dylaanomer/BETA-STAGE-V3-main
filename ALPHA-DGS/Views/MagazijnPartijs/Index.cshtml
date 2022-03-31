@@ -2,29 +2,13 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
 
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Locaties
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" asp-controller="Locaties" asp-action="Locatie1">TEST 1</a>
-        <a class="dropdown-item" asp-controller="Locaties" asp-action="Locatie2">TEST 2</a>
-        <a class="dropdown-item" asp-controller="Locaties" asp-action="Locatie3">TEST 3</a>
-        <a class="dropdown-item" asp-controller="Locaties" asp-action="Locatie4">TEST 4</a>
-        <a class="dropdown-item" asp-controller="Locaties" asp-action="Locatie5">TEST 5</a>
-        <a class="dropdown-item" asp-controller="Locaties" asp-action="Locatie6">TEST 6</a>
-
-    </div>
-</li>
-
 <p>
     <a asp-action="Create">Create New</a>
-
-    <a asp-action="IndexOVER">Overzichtelijke view</a>
 </p>
 <table class="table">
     <thead>
@@ -37,9 +21,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PHerk)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Magazijn)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.VpNaam)
@@ -55,6 +36,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Magazijn)
             </th>
             <th></th>
         </tr>
@@ -72,9 +56,6 @@
                 @Html.DisplayFor(modelItem => item.PHerk)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Magazijn.Id)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.VpNaam)
             </td>
             <td>
@@ -88,6 +69,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Magazijn.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

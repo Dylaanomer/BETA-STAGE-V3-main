@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ALPHA_DGS.Migrations
 {
     [DbContext(typeof(AlphaDbContext))]
-    [Migration("20220323213907_XDDELTACRON")]
-    partial class XDDELTACRON
+    [Migration("20220331134604_LolFK")]
+    partial class LolFK
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,22 +20,6 @@ namespace ALPHA_DGS.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ALPHA_DGS.Models.Afdeling", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Naam")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Afdeling");
-                });
 
             modelBuilder.Entity("ALPHA_DGS.Models.IdentificatieInvoer", b =>
                 {
@@ -392,7 +376,7 @@ namespace ALPHA_DGS.Migrations
             modelBuilder.Entity("ALPHA_DGS.Models.MagazijnPartij", b =>
                 {
                     b.HasOne("ALPHA_DGS.Models.Magazijn", "Magazijn")
-                        .WithMany()
+                        .WithMany("PartijSeriesMagazijn")
                         .HasForeignKey("MagazijnId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -457,6 +441,11 @@ namespace ALPHA_DGS.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ALPHA_DGS.Models.Magazijn", b =>
+                {
+                    b.Navigation("PartijSeriesMagazijn");
                 });
 #pragma warning restore 612, 618
         }
