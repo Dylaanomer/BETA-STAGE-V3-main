@@ -27,7 +27,7 @@ namespace ALPHA_DGS.Controllers
 
         public async Task<IActionResult> IndexMore(int? id)
         {
-            return View(await _context.MagazijnPartij.ToListAsync());
+            return View(await _context.Magazijn.ToListAsync());
         }
 
 
