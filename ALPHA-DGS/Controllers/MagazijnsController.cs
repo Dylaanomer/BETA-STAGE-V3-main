@@ -27,25 +27,13 @@ namespace ALPHA_DGS.Controllers
 
         public async Task<IActionResult> IndexMore(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var magazijn = await _context.Magazijn.Include(r => r.PartijSeriesMagazijn)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (magazijn == null)
-            {
-                return NotFound();
-            }
-
-            return View(magazijn);
+            return View(await _context.MagazijnPartij.ToListAsync());
         }
 
-    
 
-    // GET: Magazijns/Details/5
-    public async Task<IActionResult> Details(int? id)
+
+        // GET: Magazijns/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
