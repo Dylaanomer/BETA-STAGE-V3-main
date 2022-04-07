@@ -7,6 +7,53 @@
 
 <h1>Ingevulde dingen in @Model.Naam</h1>
 
+<style>
+table {
+position: relative;
+border: 1px solid #ddd;
+border-collapse: collapse;
+}
+
+td, th {
+white-space: nowrap;
+border: 1px solid #ddd;
+padding: 10px;
+text-align: center;
+}
+
+th {
+background-color: #eee;
+position: sticky;
+top: -1px;
+z-index: 2;
+}
+
+   
+
+.column {
+display: inline-block;
+max-width: 200px;
+}
+
+.block {
+border: 1px solid #ddd;
+max-width: 200px;
+padding: 10px;
+}
+
+&:first-of-type {
+left: 0;
+z-index: 3;
+}
+
+tbody tr td:first-of-type {
+background-color: #eee;
+position: sticky;
+left: -1px;
+text-align: left;
+}
+</style>
+
 <p>
     <a asp-action="IndexMore">Overzichtelijke view</a>
 </p>
@@ -27,6 +74,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.PartijSeriesMagazijn[0].PHerk)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartijSeriesMagazijn[0].Naam)
+            </th>
             <th></th>
         </tr>
         </thead>
@@ -38,6 +88,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Ptot)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PHerk)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Magazijn.Naam)

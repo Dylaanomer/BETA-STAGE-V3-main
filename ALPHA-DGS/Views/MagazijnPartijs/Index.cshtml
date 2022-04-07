@@ -7,6 +7,53 @@
 
 <h1>Index</h1>
 
+<style>
+    table {
+        position: relative;
+        border: 1px solid #ddd;
+        border-collapse: collapse;
+    }
+
+    td, th {
+        white-space: nowrap;
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #eee;
+        position: sticky;
+        top: -1px;
+        z-index: 2;
+    }
+
+   
+
+    .column {
+        display: inline-block;
+        max-width: 200px;
+    }
+
+    .block {
+        border: 1px solid #ddd;
+        max-width: 200px;
+        padding: 10px;
+    }
+
+    &:first-of-type {
+         left: 0;
+         z-index: 3;
+     }
+
+    tbody tr td:first-of-type {
+        background-color: #eee;
+        position: sticky;
+        left: -1px;
+        text-align: left;
+    }
+</style>
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -33,9 +80,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.AantFust)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Naam)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Magazijn)
@@ -66,9 +110,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AantFust)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Naam)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Magazijn.Id)
