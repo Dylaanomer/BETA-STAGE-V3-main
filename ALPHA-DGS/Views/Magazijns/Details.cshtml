@@ -92,9 +92,9 @@ text-align: left;
                         @:</div><div class="column">
                     }
                     <div class="block">@item.Pvan</div>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Delete" asp-controller="MagazijnPartijs" asp-route-id="@item.Id">Delete</a>
                     <div class="block">@item.Ptot</div>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Delete" asp-controller="MagazijnPartijs" asp-route-id="@item.Id">Delete</a>
                     i++;
                 }
             </div>
