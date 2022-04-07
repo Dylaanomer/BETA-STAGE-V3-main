@@ -81,31 +81,25 @@ text-align: left;
         </tr>
         </thead>
         <tbody>
-        @foreach (var item in Model.PartijSeriesMagazijn) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pvan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ptot)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PHerk)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Magazijn.Naam)
-                </td>
-                <td>
-                    <a class="btn btn-primary" asp-controller="MagazijnPartijs" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a class="btn btn-success" asp-controller="MagazijnPartijs" asp-route-id="@item.Id">Details</a> |
-                    <a class="btn btn-danger"  asp-controller="MagazijnPartijs" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
+        @{ int i = 1; }
+        <div>
+            <div>
+                @foreach (var item in Model.PartijSeriesMagazijn)
+                {
+                    if (i > 0 && i % 6 == 1)
+                    {
+                        // close the div and start again
+                        @:</div><div class="column">
+                    }
+                    <div class="block">@item.Pvan</div>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <div class="block">@item.Ptot</div>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    i++;
+                }
+            </div>
+        </div>
+         
         </tbody>
     </table>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>
