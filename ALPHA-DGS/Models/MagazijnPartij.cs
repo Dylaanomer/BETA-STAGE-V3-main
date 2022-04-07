@@ -12,6 +12,8 @@ namespace ALPHA_DGS.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        [Range(1, 999999)]
         public int Pvan { get; set; }
 
         public int Ptot { get; set; }
